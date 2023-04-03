@@ -1,0 +1,1 @@
+# webhint-formatter-json-object
