@@ -4,7 +4,7 @@ import sortBy = require('lodash/sortBy');
 
 import { FormatterOptions, IFormatter } from 'hint';
 import { logger } from '@hint/utils';
-// import { debug as d } from '@hint/utils-debug';
+import { debug as d } from '@hint/utils-debug';
 import { writeFileAsync } from '@hint/utils-fs';
 import { Problem } from '@hint/utils-types';
 
@@ -14,13 +14,13 @@ const _ = {
     sortBy
 };
 
-// const debug = d(__filename);
+const debug = d(__filename);
 
 export default class JSONObjectFormatter implements IFormatter {
 
     public async format(messages: Problem[], options: FormatterOptions = {}) {
 
-        // debug('Formatting results');
+        debug('Formatting results');
 
         if (messages.length === 0) {
             return;
