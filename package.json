@@ -11,6 +11,7 @@
     "build": "tsc -b",
     "clean": "rimraf dist",
     "lint": "eslint . --cache --ext .js,.md,.ts",
+    "release": "tsc --inlineSourceMap false --removeComments true",
     "test": "ava"
   },
   "repository": {
