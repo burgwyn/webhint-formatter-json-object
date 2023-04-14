@@ -1,3 +1,14 @@
+/**
+ * @fileoverview JSON Object formatter, it stringifies whatever
+ * object is passed to it.
+ */
+
+/*
+ * ------------------------------------------------------------------------------
+ * Requirements
+ * ------------------------------------------------------------------------------
+ */
+
 import groupBy = require('lodash/groupBy');
 import reduce = require('lodash/reduce');
 import sortBy = require('lodash/sortBy');
@@ -15,6 +26,12 @@ const _ = {
 };
 
 const debug = d(__filename);
+
+/*
+ * ------------------------------------------------------------------------------
+ * Formatter
+ * ------------------------------------------------------------------------------
+ */
 
 export default class JSONObjectFormatter implements IFormatter {
 
