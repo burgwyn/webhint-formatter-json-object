@@ -1,3 +1,7 @@
+/**
+ * @fileoverview Unit tests for JSON Object formatter.
+ */
+
 import anyTest, { TestFn, ExecutionContext } from 'ava';
 import * as sinon from 'sinon';
 import * as proxyquire from 'proxyquire';
@@ -52,7 +56,7 @@ test(`JSON object formatter doesn't print anything if no values`, (t) => {
     t.false(t.context.writeFileAsyncDefaultStub.called);
 });
 
-test(`JSON object formatter print the result in the console`, (t) => {
+test(`JSON object formatter prints the result in the console`, (t) => {
     const JsonObjectFormatter = loadScript(t.context);
     const formatter = new JsonObjectFormatter();
 
@@ -69,7 +73,7 @@ test(`JSON object formatter print the result in the console`, (t) => {
     t.false(t.context.writeFileAsyncDefaultStub.called);
 });
 
-test('JSON object formatter only print once the result even if there is multiple resources', (t) => {
+test('JSON object formatter only prints the result once even if there is multiple resources', (t) => {
     const JsonObjectFormatter = loadScript(t.context);
     const formatter = new JsonObjectFormatter();
 

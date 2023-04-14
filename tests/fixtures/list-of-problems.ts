@@ -1,5 +1,10 @@
+/**
+ * @fileoverview Problem objects for unit test fixtures.
+ */
+
 import { Category, Problem, Severity } from '@hint/utils-types';
 
+// Array of multiple problems
 const multipleProblems: Problem[] = [{
     category: Category.other,
     hintId: 'random-hint',
@@ -49,6 +54,7 @@ const multipleProblems: Problem[] = [{
     sourceCode: ''
 }];
 
+// Array of multiple problems from multiple resources
 const multipleProblemsAndResources: Problem[] = [{
     category: Category.other,
     hintId: 'random-hint',
@@ -97,6 +103,7 @@ const multipleProblemsAndResources: Problem[] = [{
     sourceCode: ''
 }];
 
+// Empty array of problems
 const noProblems: Problem[] = [];
 
 export {
