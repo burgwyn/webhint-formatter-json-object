@@ -46,7 +46,7 @@ test.afterEach.always((t) => {
     t.context.loggingLogSpy.restore();
 });
 
-test(`JSON object formatter doesn't print anything if no values`, (t) => {
+test(`JSON object formatter doesn't print anything if there are no values`, (t) => {
     const JsonObjectFormatter = loadScript(t.context);
     const formatter = new JsonObjectFormatter();
 
@@ -73,7 +73,7 @@ test(`JSON object formatter prints the result in the console`, (t) => {
     t.false(t.context.writeFileAsyncDefaultStub.called);
 });
 
-test('JSON object formatter only prints the result once even if there is multiple resources', (t) => {
+test('JSON object formatter only prints the result once even if there are multiple resources', (t) => {
     const JsonObjectFormatter = loadScript(t.context);
     const formatter = new JsonObjectFormatter();
 
@@ -108,7 +108,7 @@ test(`JSON object formatter called with the output option should write the resul
     t.is(firstCall.args[1], expectedResult);
 });
 
-test('JSON object formatter only save one file with the result even if there is multiple resources', (t) => {
+test('JSON object formatter only saves one file with the result even if there are multiple resources', (t) => {
     const JsonObjectFormatter = loadScript(t.context);
     const formatter = new JsonObjectFormatter();
     const outputFile = 'output.json';
