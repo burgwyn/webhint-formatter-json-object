@@ -39,21 +39,26 @@ export default class JSONObjectFormatter implements IFormatter {
 
         debug('Formatting results');
 
+        // exit if there are no problems
         if (messages.length === 0) {
             return;
         }
 
+        // group problems by resource
         const resources: _.Dictionary<Problem[]> = _.groupBy(messages, 'resource');
 
+        // create a single array of problems, sorted by resoource
         const result = _.reduce(resources, (result: Problem[] = [], msgs: Problem[]) => {
+
+            // sort messages by line, column
             const sortedMessages: any = _.sortBy<Problem[]>(msgs, ['location.line', 'location.column']);
 
             result.push(...sortedMessages);
 
             return result;
-
         }, []);
 
+        // log to console if not writing to file
         if (!options.output) {
             logger.log(result);
 
