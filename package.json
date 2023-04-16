@@ -24,7 +24,7 @@
     "webhint-formatter"
   ],
   "author": "Nat Burgwyn",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/burgwyn/webhint-formatter-json-object/issues"
   },
