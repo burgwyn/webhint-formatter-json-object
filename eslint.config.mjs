@@ -18,7 +18,7 @@ const compat = new FlatCompat({
     recommendedConfig: js.configs.recommended
 });
 
-export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts']}, ...compat.extends('plugin:markdown/recommended-legacy'), {
+export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts', '**/*.md']}, ...compat.extends('plugin:markdown/recommended-legacy'), {
     languageOptions: {
         ecmaVersion: 8,
         globals: {...globals.node},
@@ -324,7 +324,7 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         yoda: ['error', 'never']
     }
 }, {
-    files: ['**/*.js', '**/*.md/', '**/*.ts'],
+    files: ['**/*.js', '**/*.ts'],
 
     rules: {'no-invalid-this': 'off'}
 }];
