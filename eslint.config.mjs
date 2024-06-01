@@ -13,39 +13,60 @@ const __dirname = path.dirname(__filename);
 
 
 const compat = new FlatCompat({
+    allConfig: js.configs.all,
     baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+    recommendedConfig: js.configs.recommended
 });
 
 export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts']}, ...compat.extends('plugin:markdown/recommended-legacy'), {
-    plugins: {
-        import: fixupPluginRules(_import),
-        markdown,
-        '@typescript-eslint': typescriptEslint
+    languageOptions: {
+        ecmaVersion: 8,
+        globals: {...globals.node},
+        parser: tsParser,
+        parserOptions: {impliedStrict: true},
+        sourceType: 'module'
     },
 
     linterOptions: {reportUnusedDisableDirectives: true},
 
-    languageOptions: {
-        globals: {...globals.node},
-
-        parser: tsParser,
-        ecmaVersion: 8,
-        sourceType: 'module',
-
-        parserOptions: {impliedStrict: true}
+    plugins: {
+        '@typescript-eslint': typescriptEslint,
+        import: fixupPluginRules(_import),
+        markdown
     },
 
     rules: {
+        '@typescript-eslint/consistent-type-assertions': 'error',
+        '@typescript-eslint/explicit-member-accessibility': 'error',
+        '@typescript-eslint/member-delimiter-style': 'error',
+
+        '@typescript-eslint/naming-convention': ['error', {
+            custom: {
+                match: true,
+                regex: '^I[A-Z]'
+            },
+            format: ['PascalCase'],
+            selector: 'interface'
+        }, {
+            format: ['PascalCase'],
+            selector: 'class'
+        }],
+
+        '@typescript-eslint/no-array-constructor': 'error',
+        '@typescript-eslint/no-namespace': 'error',
+        '@typescript-eslint/no-unused-vars': 'off',
+        '@typescript-eslint/no-use-before-define': 'error',
+        '@typescript-eslint/prefer-namespace-keyword': 'error',
+        '@typescript-eslint/triple-slash-reference': 'error',
+        '@typescript-eslint/type-annotation-spacing': 'error',
         'accessor-pairs': 'off',
-        'arrow-body-style': ['error', 'always'],
         'array-bracket-spacing': ['error', 'never'],
         'array-callback-return': 'error',
+        'arrow-body-style': ['error', 'always'],
         'arrow-parens': ['error', 'always'],
         'arrow-spacing': 'error',
-        'block-spacing': 'error',
         'block-scoped-var': 'error',
+        'block-spacing': 'error',
         'brace-style': ['error', '1tbs'],
         'callback-return': ['error', ['callback', 'cb', 'next']],
 
@@ -54,15 +75,15 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         'comma-dangle': 'error',
 
         'comma-spacing': ['error', {
-            before: false,
-            after: true
+            after: true,
+            before: false
         }],
 
         'comma-style': ['error', 'last'],
         complexity: ['off', 5],
         'computed-property-spacing': ['error', 'never'],
-        'consistent-this': ['error', 'that'],
         'consistent-return': 'error',
+        'consistent-this': ['error', 'that'],
         curly: ['error', 'all'],
         'default-case': 'error',
         'dot-location': ['error', 'property'],
@@ -86,8 +107,8 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         'init-declarations': 'off',
 
         'key-spacing': ['error', {
-            beforeColon: false,
-            afterColon: true
+            afterColon: true,
+            beforeColon: false
         }],
 
         'keyword-spacing': 'error',
@@ -126,13 +147,13 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         'no-empty-character-class': 'error',
         'no-empty-pattern': 'error',
         'no-eq-null': 'error',
+        'no-eval': 'error',
         'no-ex-assign': 'error',
         'no-extend-native': 'error',
         'no-extra-bind': 'error',
         'no-extra-boolean-cast': 'error',
         'no-extra-parens': 'off',
         'no-extra-semi': 'error',
-        'no-eval': 'error',
         'no-fallthrough': 'error',
         'no-floating-decimal': 'error',
         'no-func-assign': 'error',
@@ -145,23 +166,23 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         'no-invalid-this': 'error',
         'no-irregular-whitespace': 'error',
         'no-iterator': 'error',
-        'no-labels': 'error',
         'no-label-var': 'error',
+        'no-labels': 'error',
         'no-lone-blocks': 'error',
         'no-lonely-if': 'error',
         'no-loop-func': 'error',
         'no-mixed-operators': 'off',
         'no-mixed-requires': [1, true],
         'no-mixed-spaces-and-tabs': ['error', 'smart-tabs'],
+        'no-multi-spaces': 'error',
+        'no-multi-str': 'error',
 
         'no-multiple-empty-lines': ['error', {
             max: 2,
-            maxEOF: 0,
-            maxBOF: 0
+            maxBOF: 0,
+            maxEOF: 0
         }],
 
-        'no-multi-spaces': 'error',
-        'no-multi-str': 'error',
         'no-nested-ternary': 'error',
         'no-new': 'error',
         'no-new-func': 'error',
@@ -169,16 +190,14 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         'no-new-require': 'error',
         'no-new-wrappers': 'error',
         'no-obj-calls': 'error',
-        'no-octal-escape': 'error',
         'no-octal': 'error',
-
+        'no-octal-escape': 'error',
         'no-param-reassign': ['error', {props: false}],
-
         'no-path-concat': 'error',
         'no-plusplus': 'off',
-        'no-proto': 'error',
         'no-process-env': 'error',
         'no-process-exit': 'error',
+        'no-proto': 'error',
         'no-prototype-builtins': 'off',
         'no-redeclare': 'off',
         'no-regex-spaces': 'error',
@@ -218,44 +237,41 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         'no-void': 'off',
 
         'no-warning-comments': ['warn', {
-            terms: ['fixme'],
-            location: 'start'
+            location: 'start',
+            terms: ['fixme']
         }],
 
         'no-with': 'error',
-        'object-shorthand': 'error',
-
         'object-curly-newline': ['error', {multiline: true}],
-
         'object-curly-spacing': ['off', 'always', {
-            objectsInObjects: false,
-            arraysInObjects: false
+            arraysInObjects: false,
+            objectsInObjects: false
         }],
-
+        'object-shorthand': 'error',
         'one-var': 'off',
         'operator-assignment': ['error', 'always'],
         'operator-linebreak': ['error', 'after'],
 
         'padding-line-between-statements': ['error', {
             blankLine: 'always',
-            prev: '*',
-            next: 'return'
+            next: 'return',
+            prev: '*'
         }, {
             blankLine: 'always',
-            prev: ['const', 'let', 'var'],
-            next: '*'
+            next: '*',
+            prev: ['const', 'let', 'var']
         }, {
             blankLine: 'any',
-            prev: ['const', 'let', 'var'],
-            next: ['const', 'let', 'var']
+            next: ['const', 'let', 'var'],
+            prev: ['const', 'let', 'var']
         }, {
             blankLine: 'always',
-            prev: 'directive',
-            next: '*'
+            next: '*',
+            prev: 'directive'
         }, {
             blankLine: 'any',
-            prev: 'directive',
-            next: 'directive'
+            next: 'directive',
+            prev: 'directive'
         }],
 
         'prefer-arrow-callback': 'error',
@@ -264,32 +280,32 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         'prefer-rest-params': 'error',
         'prefer-spread': 'error',
         'prefer-template': 'error',
+        'quote-props': ['error', 'as-needed'],
 
         quotes: ['error', 'single', {allowTemplateLiterals: true}],
 
-        'quote-props': ['error', 'as-needed'],
         radix: 'off',
         'require-await': 'error',
+        semi: ['error', 'always'],
 
         'semi-spacing': ['error', {
-            before: false,
-            after: true
+            after: true,
+            before: false
         }],
 
-        semi: ['error', 'always'],
         'semi-style': ['error', 'last'],
 
         'sort-keys': ['error', 'asc', {caseSensitive: false}],
 
         'sort-vars': 'off',
-        'spaced-comment': ['error', 'always'],
         'space-in-parens': ['error', 'never'],
 
         'space-unary-ops': ['error', {
-            words: true,
-            nonwords: false
+            nonwords: false,
+            words: true
         }],
 
+        'spaced-comment': ['error', 'always'],
         strict: ['error', 'never'],
 
         'switch-colon-spacing': ['error', {
@@ -298,37 +314,14 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         }],
 
         'template-curly-spacing': 'error',
-        'use-isnan': 'error',
         'unicode-bom': 'error',
+        'use-isnan': 'error',
         'valid-jsdoc': 'off',
         'valid-typeof': 'error',
         'vars-on-top': 'off',
         'wrap-iife': ['error', 'outside'],
         'wrap-regex': 'error',
-        yoda: ['error', 'never'],
-        '@typescript-eslint/explicit-member-accessibility': 'error',
-        '@typescript-eslint/member-delimiter-style': 'error',
-        '@typescript-eslint/consistent-type-assertions': 'error',
-        '@typescript-eslint/no-array-constructor': 'error',
-        '@typescript-eslint/no-namespace': 'error',
-        '@typescript-eslint/triple-slash-reference': 'error',
-        '@typescript-eslint/no-unused-vars': 'off',
-        '@typescript-eslint/no-use-before-define': 'error',
-        '@typescript-eslint/prefer-namespace-keyword': 'error',
-        '@typescript-eslint/type-annotation-spacing': 'error',
-
-        '@typescript-eslint/naming-convention': ['error', {
-            selector: 'interface',
-            format: ['PascalCase'],
-
-            custom: {
-                regex: '^I[A-Z]',
-                match: true
-            }
-        }, {
-            selector: 'class',
-            format: ['PascalCase']
-        }]
+        yoda: ['error', 'never']
     }
 }, {
     files: ['**/*.js', '**/*.md/', '**/*.ts'],
