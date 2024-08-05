@@ -38,7 +38,7 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
     rules: {
         '@typescript-eslint/consistent-type-assertions': 'error',
         '@typescript-eslint/explicit-member-accessibility': 'error',
-        '@typescript-eslint/member-delimiter-style': 'error',
+        // '@typescript-eslint/member-delimiter-style': 'error',
 
         '@typescript-eslint/naming-convention': ['error', {
             custom: {
@@ -58,7 +58,7 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         '@typescript-eslint/no-use-before-define': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
         '@typescript-eslint/triple-slash-reference': 'error',
-        '@typescript-eslint/type-annotation-spacing': 'error',
+        // '@typescript-eslint/type-annotation-spacing': 'error',
         'accessor-pairs': 'off',
         'array-bracket-spacing': ['error', 'never'],
         'array-callback-return': 'error',
