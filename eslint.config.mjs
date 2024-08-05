@@ -1,20 +1,7 @@
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
 import stylisticTs from '@stylistic/eslint-plugin-ts';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-
-const compat = new FlatCompat({
-    allConfig: js.configs.all,
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended
-});
 
 export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts', '**/*.md']}, {
     languageOptions: {
