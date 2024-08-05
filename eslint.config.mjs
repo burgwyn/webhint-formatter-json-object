@@ -8,6 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
+import stylisticTs from '@stylistic/eslint-plugin-ts';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -30,15 +31,17 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
     linterOptions: {reportUnusedDisableDirectives: true},
 
     plugins: {
+        '@stylistic/ts': stylisticTs,
         '@typescript-eslint': typescriptEslint,
         import: fixupPluginRules(_import),
         markdown
     },
 
     rules: {
+        '@stylistic/ts/member-delimiter-style': 'error',
+        '@stylistic/ts/type-annotation-spacing': 'error',
         '@typescript-eslint/consistent-type-assertions': 'error',
         '@typescript-eslint/explicit-member-accessibility': 'error',
-        // '@typescript-eslint/member-delimiter-style': 'error',
 
         '@typescript-eslint/naming-convention': ['error', {
             custom: {
@@ -58,7 +61,6 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
         '@typescript-eslint/no-use-before-define': 'error',
         '@typescript-eslint/prefer-namespace-keyword': 'error',
         '@typescript-eslint/triple-slash-reference': 'error',
-        // '@typescript-eslint/type-annotation-spacing': 'error',
         'accessor-pairs': 'off',
         'array-bracket-spacing': ['error', 'never'],
         'array-callback-return': 'error',
