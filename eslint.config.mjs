@@ -1,5 +1,3 @@
-import _import from 'eslint-plugin-import';
-import markdown from 'eslint-plugin-markdown';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import { fixupPluginRules } from '@eslint/compat';
 import globals from 'globals';
@@ -19,7 +17,7 @@ const compat = new FlatCompat({
     recommendedConfig: js.configs.recommended
 });
 
-export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts', '**/*.md']}, ...compat.extends('plugin:markdown/recommended-legacy'), {
+export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts', '**/*.md']}, {
     languageOptions: {
         ecmaVersion: 8,
         globals: {...globals.node},
@@ -32,9 +30,7 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
 
     plugins: {
         '@stylistic/ts': stylisticTs,
-        '@typescript-eslint': typescriptEslint,
-        import: fixupPluginRules(_import),
-        markdown
+        '@typescript-eslint': typescriptEslint
     },
 
     rules: {
