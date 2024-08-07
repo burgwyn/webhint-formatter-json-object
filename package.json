@@ -34,8 +34,7 @@
     "@hint/utils-debug": "^1.0.11",
     "@hint/utils-fs": "^1.0.16",
     "@hint/utils-types": "^1.2.1",
-    "lodash": "^4.17.21",
-    "webhint-formatter-json-object": "file:"
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "@eslint/compat": "^1.0.3",
