@@ -2,6 +2,7 @@ import typescriptEslint from '@typescript-eslint/eslint-plugin';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
 import stylisticTs from '@stylistic/eslint-plugin-ts';
+import pluginJs from '@eslint/js';
 
 export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts', '**/*.md']}, {
     languageOptions: {
@@ -16,7 +17,8 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
 
     plugins: {
         '@stylistic/ts': stylisticTs,
-        '@typescript-eslint': typescriptEslint
+        '@typescript-eslint': typescriptEslint,
+        ...pluginJs.configs.recommended
     },
 
     rules: {
