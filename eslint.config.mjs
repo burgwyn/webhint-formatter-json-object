@@ -1,25 +1,10 @@
-import _import from 'eslint-plugin-import';
-import markdown from 'eslint-plugin-markdown';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import { fixupPluginRules } from '@eslint/compat';
 import globals from 'globals';
 import tsParser from '@typescript-eslint/parser';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-import js from '@eslint/js';
-import { FlatCompat } from '@eslint/eslintrc';
 import stylisticTs from '@stylistic/eslint-plugin-ts';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import pluginJs from '@eslint/js';
 
-
-const compat = new FlatCompat({
-    allConfig: js.configs.all,
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended
-});
-
-export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts', '**/*.md']}, ...compat.extends('plugin:markdown/recommended-legacy'), {
+export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixtures', '**/*.d.ts', '**/*.md']}, {
     languageOptions: {
         ecmaVersion: 8,
         globals: {...globals.node},
@@ -33,8 +18,7 @@ export default [{ignores: ['**/coverage', '**/dist', '**/node_modules', '**/fixt
     plugins: {
         '@stylistic/ts': stylisticTs,
         '@typescript-eslint': typescriptEslint,
-        import: fixupPluginRules(_import),
-        markdown
+        ...pluginJs.configs.recommended
     },
 
     rules: {
