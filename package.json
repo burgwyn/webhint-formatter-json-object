@@ -1,6 +1,6 @@
 {
   "name": "webhint-formatter-json-object",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "A JSON object formatter for webhint",
   "main": "dist/src/formatter.js",
   "files": [
